@@ -113,6 +113,10 @@ public class FileSystemStorageService implements StorageService {
   public void deleteAll() {
     FileSystemUtils.deleteRecursively(rootLocation.toFile());
   }
+  @Override
+  public void delete() {
+    throw new NotImplementedException("Delete not implemented yet.");
+  }
 
   @Override
   public void init() {
