@@ -22,7 +22,7 @@ public class FileSystemStorageService implements StorageService {
 
   private final Path rootLocation;
 
-  private final long maxFileSize = 5000 * 1024;
+  private final long maxFileSize = 120;//octet
 
   @Autowired
   public FileSystemStorageService(StorageProperties properties) {
