@@ -16,7 +16,8 @@ as many possible
   - the url : http://localhost:8080/
      - Add the following parameters before you launch a post request in postman
           * Add in Header: Content-Type : multipart/form-data
-          * Add in Body: file change the type to file and upload your file
-
+          * Add in Body: file change the type to file and upload your file. (fieldName = file)
+          * You can also test it in your navigator in the endpoint "/", choose file and click "upload" button
+          * A folder named "file" contains all the files needed for exception testing
 
 Note: the file upload is put in upload-dir
