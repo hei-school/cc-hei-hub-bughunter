@@ -1,7 +1,9 @@
 package org.handling.UploadingFilesApplication.Exception;
 
-public class BadFileTypeException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class BadFileTypeException extends CustomException {
   public BadFileTypeException(String message) {
-    super(message);
+    super(message, HttpStatus.BAD_REQUEST);
   }
 }

@@ -3,19 +3,14 @@ package org.handling.UploadingFilesApplication.controller;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
-import org.handling.UploadingFilesApplication.Exception.BadFileTypeException;
-import org.handling.UploadingFilesApplication.Exception.DuplicatedFileException;
-import org.handling.UploadingFilesApplication.Exception.FileTooLargeException;
-import org.handling.UploadingFilesApplication.Exception.StorageFileNotFoundException;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.handling.UploadingFilesApplication.storage.StorageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,14 +22,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
+@AllArgsConstructor
+@Slf4j
 public class FileUploadController {
 
   private final StorageService storageService;
-
-  @Autowired
-  public FileUploadController(StorageService storageService) {
-    this.storageService = storageService;
-  }
 
   @GetMapping("/")
   public String listUploadedFiles(Model model) throws IOException {
@@ -63,30 +55,10 @@ public class FileUploadController {
   @PostMapping("/")
   public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                  RedirectAttributes redirectAttributes) {
-
     storageService.store(file);
     redirectAttributes.addFlashAttribute("message",
       "You successfully uploaded " + file.getOriginalFilename() + "!");
 
     return "redirect:/";
-  }
-
-  @ExceptionHandler(StorageFileNotFoundException.class)
-  public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
-    return ResponseEntity.notFound().build();
-  }
-  @ExceptionHandler({FileTooLargeException.class})
-  public ResponseEntity<String> handleFileTooLargeException(FileTooLargeException exc) {
-    return ResponseEntity.status(HttpStatus.REQUEST_ENTITY_TOO_LARGE).body(exc.getMessage());
-  }
-
-  @ExceptionHandler(DuplicatedFileException.class)
-  public ResponseEntity<String> handleDuplicatedFileException(DuplicatedFileException exc) {
-    return ResponseEntity.status(HttpStatus.CONFLICT).body(exc.getMessage());
-  }
-
-  @ExceptionHandler(BadFileTypeException.class)
-  public ResponseEntity<String> handleBadFileTypeException(BadFileTypeException exc) {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
   }
 }

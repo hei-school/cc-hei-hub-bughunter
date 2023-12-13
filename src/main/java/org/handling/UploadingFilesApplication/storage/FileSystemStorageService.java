@@ -43,7 +43,7 @@ public class FileSystemStorageService implements StorageService {
       if(file.getSize() > maxFileSize){
         throw new FileTooLargeException("File size exceeds the allowed limit");
       }
-      if (isFileTypeAllowed(file.getOriginalFilename())) {
+      if (!isFileTypeAllowed(file.getOriginalFilename())) {
         throw new BadFileTypeException("Invalid or disallowed file type.");
       }
       Path destinationFile = this.rootLocation.resolve(
@@ -84,7 +84,6 @@ public class FileSystemStorageService implements StorageService {
     catch (IOException e) {
       throw new StorageException("Failed to read stored files", e);
     }
-
   }
 
   @Override
@@ -101,13 +100,12 @@ public class FileSystemStorageService implements StorageService {
         return resource;
       }
       else {
-        throw new StorageFileNotFoundException(
+        throw new FileNotFoundException(
           "Could not read file: " + filename);
-
       }
     }
     catch (MalformedURLException e) {
-      throw new StorageFileNotFoundException("Could not read file: " + filename, e);
+      throw new FileNotFoundException("Could not read file: " + filename);
     }
   }
 

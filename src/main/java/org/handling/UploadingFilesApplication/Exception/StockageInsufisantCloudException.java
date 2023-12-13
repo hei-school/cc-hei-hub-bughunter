@@ -1,7 +1,9 @@
 package org.handling.UploadingFilesApplication.Exception;
 
-public class StockageInsufisantCloudException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+
+public class StockageInsufisantCloudException extends CustomException{
   public StockageInsufisantCloudException(String message) {
-    super(message);
+    super(message, HttpStatus.INSUFFICIENT_STORAGE);
   }
 }

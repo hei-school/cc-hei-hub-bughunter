@@ -1,7 +1,9 @@
 package org.handling.UploadingFilesApplication.Exception;
 
-public class FileTooLargeException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+
+public class FileTooLargeException extends CustomException{
   public FileTooLargeException(String message) {
-    super(message);
+    super(message, HttpStatus.PAYLOAD_TOO_LARGE);
   }
 }
