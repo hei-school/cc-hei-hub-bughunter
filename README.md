@@ -24,9 +24,8 @@ File Manager supports four types of files extensions :
 **Each file is filed in the corresponding folders**.
 
 There are two different implementations with different programming language : 
-- Python : with Django framework - (branch)
-- Java : with Spring Boot framework - (branch)
-
+- Python : with Django framework [here](https://github.com/hei-school/cc-hei-hub-bughunter/tree/feature/python)
+- Java : with Spring Boot framework - [here](https://github.com/hei-school/cc-hei-hub-bughunter/tree/feature/java)
 You can find in each branch how to set up the API.
 
 ## What are the error we want to handle ? 
