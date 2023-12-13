@@ -23,7 +23,7 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('files', include('file_api.urls'))
+    path('files/', include('file_api.urls'))
 ]
 
 if settings.DEBUG:
