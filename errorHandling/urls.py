@@ -16,11 +16,14 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from file_api import views
 from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('files', include('file_api.urls'))
 ]
 
 if settings.DEBUG:
