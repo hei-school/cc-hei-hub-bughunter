@@ -7,8 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 import java.util.stream.Stream;
 
+import lombok.extern.slf4j.Slf4j;
 import org.handling.UploadingFilesApplication.Exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -18,6 +20,7 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@Slf4j
 public class FileSystemStorageService implements StorageService {
 
   private final Path rootLocation;
@@ -45,6 +48,9 @@ public class FileSystemStorageService implements StorageService {
       }
       if (!isFileTypeAllowed(file.getOriginalFilename())) {
         throw new BadFileTypeException("Invalid or disallowed file type.");
+      }
+      if(Objects.equals(file.getOriginalFilename(), "ServerDown.txt")) {
+        serverDownSimulate();
       }
       Path destinationFile = this.rootLocation.resolve(
           Paths.get(file.getOriginalFilename()))
@@ -126,5 +132,9 @@ public class FileSystemStorageService implements StorageService {
     catch (IOException e) {
       throw new StorageException("Could not initialize storage", e);
     }
+  }
+
+  public void serverDownSimulate() {
+     throw new ServerDownException("Server is down for the moment.");
   }
 }
