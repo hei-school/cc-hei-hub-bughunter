@@ -22,4 +22,5 @@ source venv/bin/activate
 
 ```shell
 pip install -r requirements.txt
+python manage.py migrate
 ```
