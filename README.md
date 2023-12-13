@@ -3,7 +3,7 @@
 
 # File Manager : clean code and error handling
 
-File Manager is a simple and fast API developped by the **BugHunters**, which allows you to manage files, either on the cloud or locally. It depends on your base configuration, it's up to you.
+File Manager is a simple and fast API developed by the **BugHunters**, which allows you to manage files, either on the cloud or locally. It depends on your base configuration, it's up to you.
 
 ## Who are the BugHunters ? 
 ___BugHunters___ is a group of junior IT developers who are part of the HEI Tribute. Here are the members : 
@@ -11,7 +11,7 @@ ___BugHunters___ is a group of junior IT developers who are part of the HEI Trib
 - RAFALIMANANA Rojotiana Nomena : [Noums26](https://github.com/Noums26) - STD21007
 - RAKOTOMAHEFA Fanomezana Sarobidy : [Sarobidy-23](https://github.com/Sarobidy-23) - STD21011
 - RANDRIAMANGA Iloniavo : [Iloniavo](https://github.com/Iloniavo) - STD21020
-- RAZANAPANALA Tsirimaholy : [Tsirymaholy](https://github.com/Tsirimaholy) - STD210XX
+- RAZANAPANALA Tsirimaholy : [Tsirymaholy](https://github.com/Tsirimaholy) - STD21030
 
 
 ## What's the purpose ?
